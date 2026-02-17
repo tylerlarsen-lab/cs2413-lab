@@ -23,37 +23,45 @@
 // How to run tests (from the folder containing the Makefile):
 //   make run1
 // ------------------------------------------------------------
-
 #include "Student.h"
 #include <stdbool.h>
-#include <stddef.h>  // size_t
-#include <string.h>  // strlen
+#include <stddef.h>
+#include <string.h>
 
 bool isValid(const char *s) {
-    // TODO: Implement using a stack.
-    //
-    // Recommended approach:
-    // - Use a char array as a stack to store opening brackets.
-    // - Scan the string from left to right:
-    //   - If you see an opening bracket, push it.
-    //   - If you see a closing bracket:
-    //       * stack must not be empty
-    //       * top of stack must match the closing bracket type
-    //       * then pop
-    // - At the end, stack must be empty.
-    //
-    // Helpful matching pairs:
-    //   ')' matches '('
-    //   ']' matches '['
-    //   '}' matches '{'
-    //
-    // Corner cases:
-    // - s == NULL -> return false
-    // - odd length strings can’t be valid 
-    //
-    // Note:
-    // - Input contains only bracket characters, per the prompt.
+    // Corner cases
+    if (s == NULL) return false;
+    
+    size_t len = strlen(s);
+    if (len == 0) return true;
+    if (len % 2 != 0) return false; // Odd length can't be balanced
 
-    (void)s; // remove after implementing
-    return false; // placeholder
+    // Use a char array as a stack. 
+    // Max size needed is the length of the string.
+    char stack[len];
+    int top = -1;
+
+    for (int i = 0; s[i] != '\0'; i++) {
+        char current = s[i];
+
+        // 1. If it's an opening bracket, push it
+        if (current == '(' || current == '{' || current == '[') {
+            stack[++top] = current;
+        } 
+        // 2. If it's a closing bracket
+        else {
+            // Stack cannot be empty if we are looking for a match
+            if (top == -1) return false;
+
+            char lastOpen = stack[top--]; // Pop the top
+
+            // Check for mismatch
+            if (current == ')' && lastOpen != '(') return false;
+            if (current == '}' && lastOpen != '{') return false;
+            if (current == ']' && lastOpen != '[') return false;
+        }
+    }
+
+    // 3. If top is -1, all brackets were matched and popped
+    return top == -1;
 }
