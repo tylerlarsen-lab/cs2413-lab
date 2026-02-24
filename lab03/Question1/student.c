@@ -22,9 +22,19 @@
 #include "student.h"
 
 struct ListNode* reverseList(struct ListNode* head) {
-    // TODO: implement
-    // Hints (optional):
-    // - Keep track of previous and current pointers.
-    // - Iterate until current becomes NULL.
 
+    struct ListNode *prev = NULL;
+    struct ListNode *curr = head;
+    struct ListNode *next = NULL;
+
+    while (curr != NULL) {
+
+        next = curr->next;
+        curr->next = prev;  //reverse pointer
+
+        prev = curr;  //move prev forward 1
+        curr = next;  //move curr forward 1
+    }
+
+    return prev;
 }
