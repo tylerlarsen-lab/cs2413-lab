@@ -13,10 +13,27 @@
 //Input: nums = [2,2,1,1,1,2,2]
 //Output: 2
 
+//code begins ------------------------------------------------------------------
 
 int majorityElement(int* nums, int numsSize) {
-     // TODO: implement
 
+    int candidate = 0;  // Current majority candidate
+    int count = 0;  // Counter for candidate
 
+    for (int i = 0; i < numsSize; i++) {
+        if (count == 0) {
+            candidate = nums[i];  // Pick new candidate
+        }
 
+        if (nums[i] == candidate) {
+            count++;  // Same as candidate → increase count
+        } else {
+            count--;  // Different → decrease count
+        }
+    }
+
+    return candidate;  // Majority element
 }
+
+
+//code ends--------------------------------------------------------------------

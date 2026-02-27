@@ -13,10 +13,37 @@
 //Output: nums1 = [1,2,2,3,5,6]
 //Explanation: The arrays we are merging are [1,2,3] and [2,5,6].
 
+// Code begins -----------------------------------------------------------------
+
 void merge(int* nums1, int nums1Size, int m, int* nums2, int nums2Size, int n) {
 
- // TODO: implement
+    (void)nums1Size;   // Compiler was bitching at me
+    (void)nums2Size;
 
+    int i = m - 1;   // last index of initial nums1 elements
+    int j = n - 1;   // last index of nums2
+    int k = m + n - 1;    // last index of merged array
 
-
+    // merge from back
+    while (i >= 0 && j >= 0) {
+        if (nums1[i] > nums2[j]) {
+            nums1[k] = nums1[i];  // put larger element at end
+            i--;
+        } else {
+            nums1[k] = nums2[j];  // put larger element at end
+            j--;
+        }
+            k--;
+    }
+    // copy remaining nums2 elements
+    while (j >= 0) {
+        nums1[k] = nums2[j];
+        j--;
+        k--;
+    }
 }
+
+
+
+
+//code ends ------------------------------------------------------------------
