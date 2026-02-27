@@ -27,6 +27,32 @@
 
 int* plusOne(int* digits, int digitsSize, int* returnSize) {
 
+    int* result = malloc(digitsSize * sizeof(int));  // make new array for result
 
-    
+    for (int i = 0; i < digitsSize; i++) {  // copy original
+        result[i] = digits[i];
+    }
+
+    for (int i = digitsSize - 1; i >= 0; i--) {  // start adding from last digit
+
+        if (result[i] != 9) {  // no carry
+            result[i]++;
+            *returnSize = digitsSize;
+            return result;
+        }
+
+        result[i] = 0;  // 9 -> carry
+    }
+
+    free(result);  // all digits = 9 -> bigger array
+
+    int* bigger = malloc((digitsSize + 1) * sizeof(int));
+
+    bigger[0] = 1;  // leading 1
+    for (int i = 1; i <= digitsSize; i++) {
+        bigger[i] = 0;
+    }
+
+    *returnSize = digitsSize + 1;
+    return bigger;
 }

@@ -13,8 +13,24 @@
 //Input: nums = [2,2,1,1,1,2,2]
 //Output: 2
 
+//code begins ------------------------------------------------------------------
+
 int majorityElement(int* nums, int numsSize) {
 
+    int Var = 0;
+    int count = 0;
 
-    
+    for (int i = 0; i < numsSize; i++) {
+        if (count == 0) {
+            Var = nums[i];  // Pick new
+        }
+
+        if (nums[i] == Var) {
+            count++;  // Same = increase count
+        } else {
+            count--;  // Different = decrease count
+        }
+    }
+
+    return Var;
 }
