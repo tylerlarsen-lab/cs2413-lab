@@ -27,29 +27,6 @@
 
 int* plusOne(int* digits, int digitsSize, int* returnSize) {
 
-    // Go from last digit to first
-    for (int i = digitsSize - 1; i >= 0; i--) {
 
-        if (digits[i] != 9) { // If not 9, just add 1
-            digits[i]++;
-            *returnSize = digitsSize;
-            return digits; // Done
-        }
-
-        digits[i] = 0;  // If 9, set to 0 (carry)
-    }
-
-    // If all digits were 9, create new array
-    int* result = malloc((digitsSize + 1) * sizeof(int));
-
-    result[0] = 1;  // First digit is 1
-    for (int i = 1; i <= digitsSize; i++) {
-        result[i] = 0; // Rest are 0
-    }
-
-    *returnSize = digitsSize + 1;
-    return result;
+    
 }
-
-//code ends--------------------------------------------------------------------
-// 2/26/2026
