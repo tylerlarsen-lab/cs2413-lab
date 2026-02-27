@@ -17,22 +17,22 @@
 
 int majorityElement(int* nums, int numsSize) {
 
-    int candidate = 0;  // Current majority candidate
-    int count = 0;  // Counter for candidate
+    int Var = 0;
+    int count = 0;
 
     for (int i = 0; i < numsSize; i++) {
         if (count == 0) {
-            candidate = nums[i];  // Pick new candidate
+            Var = nums[i];  // Pick new
         }
 
-        if (nums[i] == candidate) {
-            count++;  // Same as candidate → increase count
+        if (nums[i] == Var) {
+            count++;  // Same = increase count
         } else {
-            count--;  // Different → decrease count
+            count--;  // Different = decrease count
         }
     }
 
-    return candidate;  // Majority element
+    return Var;
 }
 
 
