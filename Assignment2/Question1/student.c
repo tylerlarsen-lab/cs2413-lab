@@ -10,24 +10,33 @@
  * - Return a pointer to the node with value == target, else NULL.
  * - Do NOT allocate new nodes.
  * - Do NOT modify the tree.
- * - Do NOT print anything.
+ * - Do NOT print anaything.
  *
  * Build/Run (from Assignment2 folder):
  *   make run1
  */
 
-#include <stddef.h>  // NULL
+#include <stddef.h>
 
 struct TreeNode {
     int val;
     struct TreeNode *left;
     struct TreeNode *right;
-};
 
+};
 struct TreeNode* bstSearch(struct TreeNode* root, int target) {
-    // TODO: implement
-    // Hint: Use the BST property to decide whether to go left or right.
-    (void)root;
-    (void)target;
+
+    while (root != NULL) {
+        if (target == root->val) {
+            return root;               // root node
+        }
+        else if (target < root->val) {
+            root = root->left;         // rotate left
+        }
+        else {
+            root = root->right;        // rotate right
+        }
+    }
+    
     return NULL;
 }
